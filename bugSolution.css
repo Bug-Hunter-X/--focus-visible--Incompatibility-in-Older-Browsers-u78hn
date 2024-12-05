@@ -1,0 +1,34 @@
+/* bugSolution.css */
+
+/* Solution 1:  Using JavaScript to detect focus and apply styles */
+/* Note: This solution requires JavaScript and is not as efficient as CSS-only approach */
+
+/* Solution 2: Using a polyfill for :focus-visible */
+/* Include a library like focus-visible.js */
+
+/* Solution 3:  Fallback styling for older browsers*/
+.focusable {
+  outline: none; /* Reset default outline */
+}
+
+.focusable:focus {
+  box-shadow: 0 0 0 3px #FF0000; /* Fallback focus style */
+}
+
+/* Alternatively use a more specific selector, rather than the class .focusable */
+/* Example: button:focus { ... } */
+
+/* Solution 4: Using a CSS variable and JavaScript to detect support*/
+:root {
+  --focus-style: 0px;
+}
+
+.focusable:focus {
+  outline: var(--focus-style) solid #FF0000;
+}
+
+<script>
+  if (!('focus-visible' in document.createElement('div').style)) {
+    document.documentElement.style.setProperty('--focus-style', '3px');
+  }
+</script>
